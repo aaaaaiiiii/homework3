@@ -41,7 +41,7 @@ def getPairNumFromNames(player,card):
 def getPairNumFromPositions(player,card):
     return player*len(cards) + card + 1
 
-# TO BE IMPLEMENTED FOR THIS HOMEWORK
+#this works
 def initialClauses():
     clauses = []
 
@@ -74,7 +74,7 @@ def initialClauses():
 
     return clauses
 
-# TO BE IMPLEMENTED FOR THIS HOMEWORK 
+#this should also work
 def hand(player,cards):
     clauses = []
     for c in cards:
