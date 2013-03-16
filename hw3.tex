@@ -82,8 +82,17 @@
 
 \subsection*{Part 1}
 \begin{enumerate}
-\item
-\item
+\item This is right.
+  \begin{align*}
+    P(A \text{ exec.}\ |\ B \text{ not exec.}) &= \frac{P(\text{$A$ exec.})P(\text{$B$ not exec. $\ |\ A$ exec.})}{P(\text{$B$ not exec.})} & \text{(1)} \\
+    &= \frac{\frac{1}{3} \cdot 1}{\frac{2}{3}} & \text{(2)} \\
+    &= \frac{1}{2}
+  \end{align*}
+  \begin{enumerate}[(1)]
+    \item This is just an application of Bayes' theorem. Now that we know $B$ will live, we can use this to figure out $A$'s probability of being executed.
+    \item We know that only one person is being executed, so if $B$ is executed then the probability of $A$ living is 1.
+  \end{enumerate}
+\item This explanation supposes that the probability of $A$ being executed is independent of the probabilities of the other prisoners being executed. This is wrong. What if we had learned that $B$ \emph{was} going to be executed? Then clearly $A$ would be stupid to think that they have a $\frac{1}{3}$ probability of being executed.
 \end{enumerate}
 \subsection*{Part 2}
 \subsection*{Part 3}
