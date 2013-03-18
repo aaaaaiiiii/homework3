@@ -83,7 +83,33 @@ def hand(player,cards):
 
 # TO BE IMPLEMENTED FOR THIS HOMEWORK
 def suggest(suggester,card1,card2,card3,refuter,cardShown):
-    return []
+    clauses = []
+    if refuter is not None:
+	if cardShown is not None:
+		clauses.append(getPairNumFromNames(refuter,cardShown))
+		for i in range(1, 6):
+			j = (players.index(suggester) + i)%6
+			if players[j] == refuter:
+				break
+			clauses.append(-getPairNumFromNames(players[j],card1)
+			clauses.append(-getPairNumFromNames(players[j],card2)
+			clauses.append(-getPairNumFromNames(players[j],card3)
+	else:
+		clauses.append([getPairNumFromNames(refuter,card1),getPairNumFromNames(refuter,card2),getPairNumFromNames(refuter,card3))
+		for i in range(1, 6):
+			j = (players.index(suggester) + i)%6
+			if players[j] == refuter:
+				break
+			clauses.append(-getPairNumFromNames(players[j],card1)
+			clauses.append(-getPairNumFromNames(players[j],card2)
+			clauses.append(-getPairNumFromNames(players[j],card3)
+    else:
+	for i in range(0,6):
+		if players[i] != suggester:
+			clauses.append(-getPairNumFromNames(players[i],card1)
+			clauses.append(-getPairNumFromNames(players[i],card2)
+			clauses.append(-getPairNumFromNames(players[i],card3)
+    return clauses
 
 # TO BE IMPLEMENTED FOR THIS HOMEWORK 
 def accuse(accuser,card1,card2,card3,isCorrect):
