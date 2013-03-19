@@ -155,11 +155,7 @@ def printNotepad(clauses):
 
 def playClue():
     clauses = initialClauses()
-    print 'initialClauses'
-    printNotepad(clauses)
     clauses.extend(hand("sc",["wh", "li", "st"]))
-    print 'After extending hand'
-    printNotepad(clauses)
     clauses.extend(suggest("sc", "sc", "ro", "lo", "mu", "sc"))
     clauses.extend(suggest("mu", "pe", "pi", "di", "pe", None))
     clauses.extend(suggest("wh", "mu", "re", "ba", "pe", None))
