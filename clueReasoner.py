@@ -29,7 +29,7 @@ import SATSolver
 caseFile = "cf"
 players = ["sc", "mu", "wh", "gr", "pe", "pl"]
 extendedPlayers = players + [caseFile]
-suspects = ["mu", "pl", "gr", "pe", "sc", "wh"]
+suspects = ["mu", "pl", "gr", "pe", "wh", "sc"]
 weapons = ["kn", "ca", "re", "ro", "pi", "wr"]
 rooms = ["ha", "lo", "di", "ki", "ba", "co", "bi", "li", "st"]
 cards = suspects + weapons + rooms
@@ -50,28 +50,32 @@ def initialClauses():
         clauses.append([getPairNumFromNames(p,c) for p in extendedPlayers])
 
     # A card cannot be in two places.
-    unvisitedPlayers = []
-    for p in extendedPlayers:
-	unvisitedPlayers.append(p)
-    for c in range(21):
-	for p in range(6):
-		for p2 in range(p+1,7):
-			clauses.append([-(getPairNumFromPositions(p,c)), -(getPairNumFromPositions(p2,c))])
+    for c in cards:
+	for p1 in extendedPlayers:
+		for p2 in extendedPlayers:
+			if p1 != p2:
+				clauses.append([-getPairNumFromNames(p1,c), -getPairNumFromNames(p2,c)])
+
+		
 
     # At least one card of each category is in the case file.
     clauses.append([getPairNumFromNames("cf", s) for s in suspects])
-    clauses.append([getPairNumFromNames("cf", s) for w in weapons])
-    clauses.append([getPairNumFromNames("cf", s) for r in rooms])
+    clauses.append([getPairNumFromNames("cf", w) for w in weapons])
+    clauses.append([getPairNumFromNames("cf", r) for r in rooms])
 
     # No two cards in each category can both be in the case file.
-    for i in range(0, 5):
-	for j in range(i+1, 6):
-		clauses.append([-getPairNumFromNames("cf",suspects[i]), -getPairNumFromNames("cf",suspects[j])])
-		clauses.append([-getPairNumFromNames("cf",weapons[i]), -getPairNumFromNames("cf",weapons[j])])
-    for i in range(0, 8):
-	for j in range(i+1, 9):
-		clauses.append([-getPairNumFromNames("cf",rooms[i]), -getPairNumFromNames("cf",rooms[j])])
-
+    for s1 in suspects:
+	    for s2 in suspects:
+		    if s1 != s2:
+			    clauses.append([-getPairNumFromNames("cf",s1), -getPairNumFromNames("cf",s2)])
+    for w1 in weapons:
+	    for w2 in weapons:
+		    if w1 != w2:
+			    clauses.append([-getPairNumFromNames("cf",w1), -getPairNumFromNames("cf",w2)])
+    for r1 in rooms:
+	    for r2 in rooms:
+		    if r1 != r2:
+			    clauses.append([-getPairNumFromNames("cf",r1), -getPairNumFromNames("cf",r2)])   
     return clauses
 
 #this should also work
@@ -86,35 +90,44 @@ def suggest(suggester,card1,card2,card3,refuter,cardShown):
     clauses = []
     if refuter is not None:
 	if cardShown is not None:
-		clauses.append(getPairNumFromNames(refuter,cardShown))
+		clauses.append([getPairNumFromNames(refuter,cardShown)])
 		for i in range(1, 6):
 			j = (players.index(suggester) + i)%6
 			if players[j] == refuter:
 				break
-			clauses.append(-getPairNumFromNames(players[j],card1)
-			clauses.append(-getPairNumFromNames(players[j],card2)
-			clauses.append(-getPairNumFromNames(players[j],card3)
+			clauses.append([-getPairNumFromNames(players[j],card1)])
+			clauses.append([-getPairNumFromNames(players[j],card2)])
+			clauses.append([-getPairNumFromNames(players[j],card3)])
 	else:
-		clauses.append([getPairNumFromNames(refuter,card1),getPairNumFromNames(refuter,card2),getPairNumFromNames(refuter,card3))
+		clauses.append([getPairNumFromNames(refuter,card1),getPairNumFromNames(refuter,card2),getPairNumFromNames(refuter,card3)])
 		for i in range(1, 6):
 			j = (players.index(suggester) + i)%6
 			if players[j] == refuter:
 				break
-			clauses.append(-getPairNumFromNames(players[j],card1)
-			clauses.append(-getPairNumFromNames(players[j],card2)
-			clauses.append(-getPairNumFromNames(players[j],card3)
+			clauses.append([-getPairNumFromNames(players[j],card1)])
+			clauses.append([-getPairNumFromNames(players[j],card2)])
+			clauses.append([-getPairNumFromNames(players[j],card3)])
     else:
 	for i in range(0,6):
 		if players[i] != suggester:
-			clauses.append(-getPairNumFromNames(players[i],card1)
-			clauses.append(-getPairNumFromNames(players[i],card2)
-			clauses.append(-getPairNumFromNames(players[i],card3)
+			clauses.append([-getPairNumFromNames(players[i],card1)])
+			clauses.append([-getPairNumFromNames(players[i],card2)])
+			clauses.append([-getPairNumFromNames(players[i],card3)])
     return clauses
 
 # TO BE IMPLEMENTED FOR THIS HOMEWORK 
 def accuse(accuser,card1,card2,card3,isCorrect):
-    return []
-
+	clauses = []
+	if isCorrect:
+		clauses.append([getPairNumFromNames("cf",card1)])
+	    	clauses.append([getPairNumFromNames("cf",card2)])
+	    	clauses.append([getPairNumFromNames("cf",card3)])
+	else:
+	    	clauses.append([-getPairNumFromNames("cf",card1), -getPairNumFromNames("cf",card2), -getPairNumFromNames("cf",card3)])
+	clauses.append([-getPairNumFromNames(accuser,card1)])	    
+	clauses.append([-getPairNumFromNames(accuser,card2)])	    
+	clauses.append([-getPairNumFromNames(accuser,card3)])
+	return clauses
 
 
 
@@ -142,8 +155,11 @@ def printNotepad(clauses):
 
 def playClue():
     clauses = initialClauses()
-    #print clauses
+    print 'initialClauses'
+    printNotepad(clauses)
     clauses.extend(hand("sc",["wh", "li", "st"]))
+    print 'After extending hand'
+    printNotepad(clauses)
     clauses.extend(suggest("sc", "sc", "ro", "lo", "mu", "sc"))
     clauses.extend(suggest("mu", "pe", "pi", "di", "pe", None))
     clauses.extend(suggest("wh", "mu", "re", "ba", "pe", None))
