@@ -144,6 +144,8 @@ Ha ha!
 We will use geocoding information to filter data from a particular location. Consider a single person. The probability that they are in a particular coffee shop can be determined with evidence such as whether or not they've recently tweeted about coffee, their most recent Foursquare checking, etc. We combine all of this data using a Bayesian network, and, if the person is likely to be at a particular location, we add them to that shop's total. We can account for the fact that not everyone is on Twitter by multiplying the sum by a constant, or even weighting each person by their probability of being there.
 
 This could be easily extended to other businesses -- should we go to the Feve or Black River for dinner?
-\item
+\item \textbf{Is My Professor in Their Office?} More specifically, is Tom playing Minecraft with the door closed right now? This is a useful problem to solve, especially when you're in Theory of Computation. You could always just walk up to the office (you're probably in the lab anyway), but when you spend all day coding, you need to conserve as much energy as possible.
+  
+  To formalize a bit, we propose to use a Bayesian network to determine the probability that a professor is around. We use a number of parameters, including whether or not it's their office hours (very likely that they're there), whether they've emailed anyone lately (pretty likely), whether it's late at night or early morning (very unlikely), what the general probability of them being in their office is at this time, etc.
 \end{itemize}
 \end{document}
