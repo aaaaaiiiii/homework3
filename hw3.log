@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  19 MAR 2013 22:52
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  20 MAR 2013 17:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -290,14 +290,14 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 127.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 135.
 
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 127.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 135.
 Missing character: There is no ‚ in font cmr9!
 Missing character: There is no Ä in font cmr9!
 Missing character: There is no ú in font cmr9!
@@ -305,12 +305,12 @@ Missing character: There is no ‚ in font cmr9!
 Missing character: There is no Ä in font cmr9!
 Missing character: There is no ù in font cmr9!
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--131
+Underfull \hbox (badness 10000) in paragraph at lines 136--139
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--131
+Underfull \hbox (badness 10000) in paragraph at lines 136--139
 
  []
 
@@ -322,7 +322,7 @@ Here is how much of TeX's memory you used:
  6198 multiletter control sequences out of 15000+200000
  11737 words of font info for 45 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,14n,43p,1096b,370s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,11n,43p,1096b,370s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfo
@@ -333,7 +333,7 @@ ts/cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts
 r9.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
 0.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
 .pfb>
-Output written on hw3.pdf (3 pages, 120232 bytes).
+Output written on hw3.pdf (3 pages, 120191 bytes).
 PDF statistics:
  50 PDF objects out of 1000 (max. 8388607)
  35 compressed objects within 1 object stream
