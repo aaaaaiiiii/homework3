@@ -95,8 +95,33 @@
 \item This explanation supposes that the probability of $A$ being executed is independent of the probabilities of the other prisoners being executed. This is wrong. What if we had learned that $B$ \emph{was} going to be executed? Then clearly $A$ would be stupid to think that they have a $\frac{1}{3}$ probability of being executed.
 \end{enumerate}
 \subsection*{Part 2}
+We want to find $P(hwDone|scoutsHonor)$, the probability that a student's homework has been completed given the fact that they said it had (and they forgot it at home). We know that if a student's homework is completed, they will say they forgot it at home with .01 probability, and we guess that if it isn't completed, they'll say they forgot it with .5 probability. Finally, we guess about 90\% of the students did the homework. With Bayes' rule, we have:
+ \begin{align*}
+P(hwD|sH) &= P(sH|hwD) *P(hwD) / P(sH) \\
+&= (.01) * (.90) / (P(hwD)*P(sH|hwD) + P(\overline{hwD})*P(sH| \overline{hwD})) \\
+&= (.01) * (.90) / ((.90*.01)+(.10*.50))\\
+&= .15\\
+\end{align*}
 \subsection*{Part 3}
+\begin{enumerate}[a.]
+\item \begin{align*}
+P(A \land B \land C \land D \land E) &= P(A) * P(B) * P(C) * P(D|A,B) * P(E|B,C)\\
+&= .2 * .5 * .8 * .1 * .3\\
+&= .0024\\
+\end{align*}
+\item \begin{align*}
+P(\lnot A \land \lnot B \land \lnot  C \land \lnot D \land \lnot E) &= P(\overline{A}) * P(\overline{B}) * P(\overline{C}) * P(\overline{D}|\overline{A},\overline{B}) * P(\overline{E}|\overline{B},\overline{C})\\
+&= .8 * .5 * .2 * .1 * .8\\
+&= .0064\\
+\end{align*}
+\item \begin{align*}
+P(\lnot A \land B \land C \land D \land E) &= P(\overline{A}) * P(B) * P(C) * P(D|\overline{A},B) * P(E|B,C)\\
+&= .8 * .5 * .8 * .6 * .3\\
+&= .0576\\
+\end{align*}
+\end{enumerate}
 \subsection*{Part 4}
+Ha ha!
 \subsection*{Part 5}
 \begin{itemize}
 \item Natural-looking facial animations can be used in a variety of contexts, from computer games to studies of speech perception. Xue \footnote{Jianxia Xue. ``Acoustically-Driven Talking Face Animations Using Dynamic Bayesian Networks.'' (2008).} used Bayesian networks to develop a system for constructing facial animations from audio data. A two-dimensional hidden state space was used to relate the audio and facial data to in order to construct the most likely facial motion for a given sequence of sounds. This allowed the synthesis of facial animations from arbitrary human speech. The resultant animations were fairly accurate. A study was made with sixteen participants, asking them to decide whether a pair of animation and sound matched, or were different. The participants answered correctly around 80\% of the time.
